@@ -47,8 +47,8 @@ secretBtn.addEventListener("click", () => {
   secretBtn.style.display = "none";
 });
 
-// Contador de días (CAMBIÁ LA FECHA)
-const startDate = new Date("2024-06-01");
+// Nos elegimos desde el 1 de noviembre
+const startDate = new Date("2024-11-01T00:00:00");
 const today = new Date();
 const diffDays = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24));
 document.getElementById("daysTogether").textContent = diffDays;
