@@ -70,37 +70,30 @@ button:hover {
   display: none;
 }
 
-#letter {
-  margin-top: 25px;
-  padding: 25px;
-  border-radius: 15px;
-  background: rgba(255,255,255,0.05);
+
+@keyframes unfold {
+  from {
+    transform: scaleY(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
 .letter-text {
-  line-height: 1.6;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.15em;
+  line-height: 1.8;
   white-space: pre-line;
 }
 
+/* firma más delicada */
 .signature {
-  display: block;
-  margin-top: 20px;
-  font-style: italic;
-}
-
-#secret {
-  margin-top: 20px;
-  font-style: italic;
-  opacity: 0.85;
-}
-
-.counter {
-  margin-top: 30px;
-  opacity: 0.8;
-}
-
-.controls {
-  position: fixed;
-  top: 15px;
-  right: 15px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2em;
+  text-align: right;
+  margin-top: 25px;
+  color: #444;
 }
