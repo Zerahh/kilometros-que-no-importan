@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s;
+}
+
+body.night {
+  background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+  color: #f5f5f5;
+}
+
+body.day {
+  background: linear-gradient(120deg, #fdfbfb, #ebedee);
+  color: #222;
+}
+
+.container {
+  background: rgba(0,0,0,0.4);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+body.day .container {
+  background: rgba(255,255,255,0.7);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3em;
+}
+
+.subtitle {
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+button {
+  background: #ff5f7e;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff5f7e;
+}
+
+.hidden {
+  display: none;
+}
+
+#letter {
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+}
+
+.letter-text {
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.signature {
+  display: block;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+#secret {
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.counter {
+  margin-top: 30px;
+  opacity: 0.8;
+}
+
+.controls {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
