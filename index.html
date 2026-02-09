@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Kilómetros que no importan</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body class="night">
+
+<audio id="music" loop>
+  <source src="https://files.catbox.moe/8h4p7k.mp3" type="audio/mpeg">
+</audio>
+
+<div class="controls">
+  <button id="toggleMusic">🎧</button>
+  <button id="toggleTheme">🌙</button>
+</div>
+
+<div class="container">
+  <h1>Kilómetros que no importan</h1>
+  <p class="subtitle">Porque incluso lejos, te siento cerca.</p>
+
+  <button id="openLetter">Abrir la carta</button>
+
+  <div id="letter" class="hidden">
+    <p class="letter-text"></p>
+    <span class="signature">— Yo, eligiéndote</span>
+  </div>
+
+  <button id="secretBtn" class="hidden">No toques esto</button>
+
+  <div id="secret" class="hidden">
+    <p>Te prometo que cuando nos volvamos a ver, el mundo va a quedar chico.</p>
+  </div>
+
+  <div class="counter">
+    <p>Nos elegimos hace</p>
+    <span id="daysTogether"></span>
+    <p>días</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
