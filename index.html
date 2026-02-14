@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Kilómetros que no importan</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 
 <style>
 body{
@@ -57,7 +56,8 @@ body::before{
 #letter{
   opacity:0;
   transform:scale(0.95);
-  transition:all 0.8s ease;
+  transition:all 0.8s fit-content;
+  margin-bottom: 30px;
 }
 
 #letter.show{
@@ -75,6 +75,7 @@ body::before{
   opacity:0;
   pointer-events:none;
   transition:opacity 0.8s ease;
+  z-index: 5;
 }
 
 .cinematic-overlay.active{
@@ -92,23 +93,72 @@ body::before{
   50%{opacity:0;}
 }
 
-/* CORAZÓN MÁS ROMÁNTICO */
-.heart-beat{
-  font-size:30px;
-  margin-bottom:10px;
-  display:block;
-  animation:latido 3.5s ease-in-out infinite;
-  filter:drop-shadow(0 0 6px rgba(255,105,180,0.6));
+/* BOTÓN CORAZÓN PLAY */
+.heart-button {
+  position: relative;
+  width: 80px;
+  height: 70px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-@keyframes latido{
-  0%{transform:scale(1);}
-  15%{transform:scale(1.08);}
-  30%{transform:scale(1);}
-  45%{transform:scale(1.12);}
-  60%{transform:scale(1);}
-  100%{transform:scale(1);}
+.heart-button:hover {
+  transform: scale(1.1);
 }
+
+.heart-button::before,
+.heart-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 65px;
+  border-radius: 50px 50px 0 0;
+  background: #e74c3c;
+}
+
+.heart-button::before {
+  left: 40px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart-button::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.play-triangle {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 18px;
+  border-color: transparent transparent transparent white;
+  z-index: 2;
+}
+
+#videoContainer {
+  display: none;
+  margin-top: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+iframe {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
 </style>
 </head>
 
@@ -129,8 +179,15 @@ body::before{
   <span class="signature">— Yo, eligiéndote</span>
 </div>
 
+<button id="playVideoBtn" class="heart-button">
+  <div class="play-triangle"></div>
+</button>
+
+<div id="videoContainer">
+  <iframe id="videoIframe" src="" width="640" height="360" frameborder="0" allow="autoplay"></iframe>
+</div>
+
 <div class="counter">
-  <span class="heart-beat">❤️</span>
   <p>Nos elegimos hace</p>
   <span id="daysTogether"></span>
   <div id="extraTime"></div>
@@ -198,6 +255,19 @@ openLetterBtn.addEventListener("click",()=>{
   letter.classList.add("show");
   escribirTexto(mensaje,letterText);
   openLetterBtn.style.display="none";
+});
+
+// LÓGICA DEL VIDEO
+const playVideoBtn = document.getElementById("playVideoBtn");
+const videoContainer = document.getElementById("videoContainer");
+const videoIframe = document.getElementById("videoIframe");
+
+playVideoBtn.addEventListener("click", () => {
+  // Cambiamos el link de Drive al formato embed para que funcione dentro del HTML
+  const videoUrl = "https://drive.google.com/file/d/1Xrq7d6Qx5jm30JSyBYSSqK0AvWcX0jJP/preview";
+  videoIframe.src = videoUrl;
+  videoContainer.style.display = "block";
+  playVideoBtn.style.display = "none";
 });
 
 // CÓDIGO SECRETO
