@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Kilómetros que no importan</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #toggleTheme {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      font-size: 18px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .counter span {
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: inline-block;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes latido {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.15); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .heartbeat {
+      animation: latido 1.2s ease;
+    }
+  </style>
+</head>
+<body class="night">
+
+<button id="toggleTheme">🌙</button>
+
+<div class="container">
+  <h1>Kilómetros que no importan</h1>
+  <p class="subtitle">Porque incluso lejos, te siento cerca.</p>
+
+  <button id="openLetter">Abrir la carta</button>
+
+  <div id="letter" class="hidden">
+    <p class="letter-text"></p>
+    <span class="signature">— Yo, eligiéndote</span>
+  </div>
+
+  <button id="secretBtn" class="hidden">No toques esto</button>
+
+  <div id="secret" class="hidden">
+    <p>Te prometo que cuando nos volvamos a ver, el mundo va a quedar chico.</p>
+  </div>
+
+  <div class="counter">
+    <p>Nos elegimos hace</p>
+    <span id="daysTogether"></span>
+    <p>días</p>
+  </div>
+</div>
+
+<script>
+  function calcularDias() {
+    const inicio = new Date("2024-11-01"); // Ajustá el año si es necesario
+    const hoy = new Date();
+    const diferencia = hoy - inicio;
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    animarContador(dias);
+  }
+
+  function animarContador(valorFinal) {
+    const elemento = document.getElementById("daysTogether");
+    let contador = 0;
+    const duracion = 2000;
+    const incremento = valorFinal / (duracion / 16);
+
+    const intervalo = setInterval(() => {
+      contador += incremento;
+      if (contador >= valorFinal) {
+        contador = valorFinal;
+        clearInterval(intervalo);
+      }
+      elemento.textContent = Math.floor(contador);
+    }, 16);
+
+    // Activar latido después del fade
+    setTimeout(() => {
+      elemento.classList.add("heartbeat");
+    }, 2000);
+  }
+
+  calcularDias();
+
+  const toggleTheme = document.getElementById("toggleTheme");
+  toggleTheme.addEventListener("click", () => {
+    document.body.classList.toggle("night");
+    toggleTheme.textContent = 
+      document.body.classList.contains("night") ? "🌙" : "☀️";
+  });
+</script>
+
+</body>
+</html>
