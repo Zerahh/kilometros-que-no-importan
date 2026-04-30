@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Kilómetros que no importan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  overflow-x:hidden;
+  background:black;
+  color:white;
+  font-family:'Montserrat',sans-serif;
+}
+
+/* ESTRELLAS */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 70% 80%, white, transparent);
+  animation:starsMove 120s linear infinite;
+  opacity:0.6;
+  z-index:-1;
+}
+
+@keyframes starsMove{
+  from{transform:translateY(0);}
+  to{transform:translateY(-200px);}
+}
+
+.container{
+  text-align:center;
+  padding:60px 20px;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+}
+
+.subtitle{
+  opacity:0.7;
+  margin-bottom:20px;
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+}
+
+#letter{
+  opacity:0;
+  transition:all 0.8s ease;
+  margin-top:20px;
+}
+
+#letter.show{
+  opacity:1;
+}
+
+/* NUEVA SECCIÓN */
+.new-section{
+  margin-top:80px;
+  padding:40px;
+  border-top:1px solid rgba(255,255,255,0.2);
+}
+
+.heart{
+  font-size:28px;
+  margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Kilómetros que no importan</h1>
+<p class="subtitle">Porque incluso lejos, te siento cerca.</p>
+
+<button onclick="mostrarCarta()">Abrir la carta</button>
+
+<div id="letter">
+  <p id="textoCarta"></p>
+</div>
+
+<div class="counter">
+  <p>182 días eligiéndonos</p>
+</div>
+
+<!-- NUEVO BLOQUE -->
+<div class="new-section">
+  <h2>Medio año después</h2>
+  <div class="heart">❤️</div>
+  <p>
+    Seis meses no suenan a tanto, pero cuando los miro bien,
+    están llenos de vos.<br><br>
+    De lo que fuimos construyendo sin darnos cuenta,
+    de lo que resistió la distancia,
+    y de todo lo que todavía quiero seguir viviendo con vos.<br><br>
+    No es perfecto, pero es real.
+    Y eso me alcanza para seguir eligiéndote.
+  </p>
+</div>
+
+</div>
+
+<script>
+function mostrarCarta(){
+  const texto = `A pesar de los kilómetros,
+sigo eligiéndote cada día.
+No importa la distancia,
+porque lo nuestro no se mide en mapas,
+se mide en constancia.`;
+
+  let i=0;
+  const contenedor=document.getElementById("textoCarta");
+  const carta=document.getElementById("letter");
+
+  carta.classList.add("show");
+  contenedor.innerHTML="";
+
+  function escribir(){
+    if(i<texto.length){
+      contenedor.innerHTML += texto[i];
+      i++;
+      setTimeout(escribir,40);
+    }
+  }
+  escribir();
+}
+</script>
+
+</body>
+</html>
